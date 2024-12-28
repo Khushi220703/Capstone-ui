@@ -1,0 +1,324 @@
+{
+    "products":[
+    {
+      "id": 1,
+      "title": "Wireless Earbuds",
+      "price": 2999,
+      "rating": 4.8,
+      "description": "High-quality wireless earbuds with noise cancellation.",
+      "category": "Electronics",
+      "imageUrl": ["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgP3_2r7z951CDU2yu6-Z8q-XD0T7GHDv5xQ&s",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQufA2QY1qi4VxBffNRGx7VQTwVY1gtY-5xsg&s",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUEBDJamdkR0TlWcaJjVJYZZZA4TO1NFMQrQ&s"],
+      "availableColors": ["Black", "White"],
+      "availableSizes": ["One Size"],
+      "materials": ["Plastic", "Silicone"],
+      "features": ["Bluetooth 5.0", "Noise Cancellation", "Water Resistant"],
+      "reviews": [
+        { "reviewer": "Alice", "comment": "Amazing sound quality!", "rating": 5 },
+        { "reviewer": "Bob", "comment": "Battery life could be better.", "rating": 4 }
+      ],
+      "brandName":"TATA",
+      "maxStock":3
+    },
+    {
+      "id": 2,
+      "title": "Smart LED TV",
+      "price": 39999,
+      "rating": 4.7,
+      "description": "A 55-inch smart TV with 4K Ultra HD resolution and apps.",
+      "category": "Electronics",
+      "imageUrl": ["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1ndEZ9kfFFjama697vWzu0pcepjPwgHwk3Q&s",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoJSaZ14l9L-s0Gep01MKWMsWW4OTWxUMWzA&s",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjGnJ26U2A2CVlLKsoYj3OsiT0M7wM7pTgHw&s"],
+      "availableColors": ["Black"],
+      "availableSizes": ["55-inch"],
+      "materials": ["Metal", "Plastic"],
+      "features": ["4K Ultra HD", "Smart Apps", "Voice Control"],
+      "reviews": [
+        { "reviewer": "Charlie", "comment": "Crisp display and fast interface.", "rating": 5 },
+        { "reviewer": "Diana", "comment": "Great value for the price.", "rating": 4.5 }
+      ],
+      "brandName":"TATA",
+      "maxStock":3
+    },
+    {
+      "id": 3,
+      "title": "Casual Summer Dress",
+      "price": 1999,
+      "rating": 4.2,
+      "description": "A light and comfortable summer dress suitable for outings.",
+      "category": "Clothes",
+      "imageUrl": ["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTQ3kbS1RfH3L10JV_F1HpHt0BD6qG1JVfBw&s",
+      "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcTJdOn9jOSWm_snTPCMekLt1JtF__b9lWhprPkZ96qqd1eTmAQx6RIORueqX6y9R39iFD4XQgNoHR1QuiX148DGWKw_4pFEATG94TXezFY&usqp=CAE",
+      "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcQkGYM58_fQtsHtd8aDjBhi094KM-ZRt4wXkH9gwyLRUSgzCsaJhUAuwg-RLIhBle0FmQXbdne0yZ3X6BAkoVwxiVmHQUC5avjmV-3Vv97BqgOil4_L6dX4HA&usqp=CAE"],
+      "availableColors": ["Blue", "Pink", "Yellow"],
+      "availableSizes": ["S", "M", "L", "XL"],
+      "materials": ["Cotton"],
+      "features": ["Breathable Fabric", "Machine Washable"],
+      "reviews": [
+        { "reviewer": "Emily", "comment": "Very comfortable and stylish.", "rating": 4.5 },
+        { "reviewer": "Frank", "comment": "Fits perfectly!", "rating": 4 }
+      ],
+      "brandName":"TATA",
+      "maxStock":3
+    },
+    {
+      "id": 4,
+      "title": "Men’s Formal Shirt",
+      "price": 1499,
+      "rating": 4.4,
+      "description": "A classic white shirt perfect for office or formal events.",
+      "category": "Clothes",
+      "imageUrl": ["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFbGqstFV0ypaDEy5jMhD-sn3zARxR5lyW-g&s",
+      "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcQn27i46KljDaoR9celOcU8bx_Urtg4Rc07tKOUOuuqnO6ASf1WV8DOr0v8wcTgrnSFFl9RHqiQsxboNYDbEydBGB0fx3Nfy2B71MLbF-iywIWyx2viJ_7LiQ&usqp=CAE",
+      "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcQkWqw2EfCr0HI5FJPLY2ieUfGvSyMHaLJJj4I8iaQfbmx4yxLW78A2H1IWVzh2wwT_BpqBF23IoAZiLbG3APjTkpJAe-UppwlaAJBQELI&usqp=CAE"],
+      "availableColors": ["White", "Light Blue"],
+      "availableSizes": ["M", "L", "XL"],
+      "materials": ["Cotton", "Polyester"],
+      "features": ["Wrinkle-Free", "Slim Fit"],
+      "reviews": [
+        { "reviewer": "George", "comment": "Good material and fitting.", "rating": 4.5 },
+        { "reviewer": "Helen", "comment": "Looks very professional.", "rating": 4.2 }
+      ],
+      "brandName":"TATA",
+      "maxStock":3
+    },
+    {
+      "id": 5,
+      "title": "Organic Brown Rice",
+      "price": 499,
+      "rating": 4.6,
+      "description": "Premium organic brown rice for healthy eating habits.",
+      "category": "Grocery",
+      "imageUrl": ["https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcTIVc_LrsYU06TU7nP0oStfClV2FaFO9VRxrchDYHOoHb5D431BXVDuuii7ft23ZA-PIsSgF3Bp4zmNxsvtjz0tYMfEVW21VOjykoa0uC3HNnjSMHH3Wt6_Iw&usqp=CAE",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReuBgt8Zi1d_wnvIp3lCVKo5-9k3GlIr9hnQ&s",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT65YuEGSiTYSk2zne_taUZNNpeGKfCDHGfkA&s"],
+      "availableColors": ["Natural Brown"],
+      "availableSizes": ["1kg", "5kg"],
+      "materials": ["100% Organic Brown Rice"],
+      "features": ["Gluten-Free", "Rich in Fiber"],
+      "reviews": [
+        { "reviewer": "Ivy", "comment": "Tastes great and is healthy!", "rating": 4.8 },
+        { "reviewer": "Jack", "comment": "Good quality and price.", "rating": 4.5 }
+      ],
+      "brandName":"TATA",
+      "maxStock":3
+
+    },
+    {
+      "id": 6,
+      "title": "Fresh Apples",
+      "price": 299,
+      "rating": 4.8,
+      "description": "Crunchy and fresh apples directly from the farm.",
+      "category": "Grocery",
+      "imageUrl": ["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTT1keAUgZnQnYtyeNAKOfzRl2tfuyI2SHHAA&s","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS30kSpCSummabGE49RBDuax5yi1XChdW84Dg&s","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvWtkF7oodxsawm7pwlFd_wS1uBrJaesZAxA&s"],
+      "availableColors": ["Red"],
+      "availableSizes": ["1kg", "2kg"],
+      "materials": ["100% Fresh Apples"],
+      "features": ["Farm Fresh", "No Preservatives"],
+      "reviews": [
+        { "reviewer": "Karen", "comment": "Crisp and delicious!", "rating": 5 },
+        { "reviewer": "Leo", "comment": "Perfectly ripe.", "rating": 4.7 }
+      ],
+      "brandName":"TATA",
+      "maxStock":3
+    },
+    {
+      "id": 7,
+      "title": "Running Shoes",
+      "price": 4999,
+      "rating": 4.5,
+      "description": "Lightweight and comfortable running shoes for daily workouts.",
+      "category": "Footwear",
+      "imageUrl": ["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_f34tZLQC3ww3EUsk6ZrC5h9YWdPyo4k5Kw&s",
+      "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxAREBIQEBMVEBMSEhUVEhMXEhIVExAVFRIXFxgTFRYYHCggGBsmGxUVIT0hJikrLi8uGB8zODMtNygtLisBCgoKDg0NDg0PFSsZFRkrNystLSsrLTcrLSsrKy0rKys3KysrKys3KysrKysrKysrKysrKysrKysrKysrKysrK//AABEIAOEA4QMBIgACEQEDEQH/xAAcAAEAAQUBAQAAAAAAAAAAAAAABwIDBAUGAQj/xABGEAACAQICBQcIBwUHBQAAAAAAAQIDEQQhBRIxQVEGByJhcYGRExQyobHB0fBCUnKDkpPhI1Ni0tMXM0OCoqPCJGNkhLL/xAAWAQEBAQAAAAAAAAAAAAAAAAAAAQL/xAAWEQEBAQAAAAAAAAAAAAAAAAAAEQH/2gAMAwEAAhEDEQA/AJpAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWMVi6dJa1Wcaa4yaV+ziMFjaVaOvRnGpG7WtGSaTW1O2x9QF8AAAAABaxFXUjfa7pJXtdykopX3ZtFNCtJtxnFRkknlLWjJPK6bS37rb1xAvgAAAAAAAAAAAAAAAAAAAAAAAAxsfpCjQjr16kKUW7Jzkopvgr7WR9yp51adGbpYOk8Tb/F14Rpyds9Vu7aV10rWvkBIWPxkKNOVWo7RjbZm5NtKMYrfJtpJcWiPeUXObh6cX5KvGrNScVRw/Tb4eVxMo6kI/ZUnwbsR9yj5dY7FU5UsTKmqLlrwpwTTds4wnJ21rdHcs/A5WeI1FaK+1GySlff2iDP01pmti5upiKkp3d1S1pOnDqs30n1v1HZcyOk9TSE6Ddo16EujeydSm4yi2tl9TymfAjGpDWzt0rbNbWUerLIy+T+mqmExVDExWtOhNSSb2rY434OLa7yo+twcxyQ5dYLSSSoz1K1ryw82lUXFx+uutd9jpyKAFrFYiFKEqlSShCEXKc5O0YxSu22BxvPBpunhdGzTm4Vqs6aw2q+mqlOpGprrgo6l79i3nPc2fOJLFUo08ZPWxFGrGLnZJ16FaSpqVlleNSVO9t1nxIy5fcpZaVx8qsdbyMOhQjs1aSfpW3Sk8+OxbjWVaW6HQa9Fq6a4NNfL27ywfXANRyS0v55gcNivpVaUXNcKi6NRd04yRtyAAAAAAAAAAAAAAAAADD0tpShhabq4ipGlBb285P6sVtk+pEMcq+dDF4lyp4S+EoqT6a/v60ftPKndZ5eIEvcoeUWFwNPymKqKmn6MbOU5u6VoxWbzaXDMjfT3OzUk5wwlLyMNV2q1Feo+uMU9WLXXrEa4nH1Kstacpzae2c9eTSWy93x2XKZYWUrKSsou3StaLjnfV23td26uouYle4zSU8RJzxE6laTfpTnOUo33RzyWxWXDeYiUpPpWW6KTbyvt436jN82jwdns1nqxipJOLbtd31ZZ2tmsyipikr52VrtRj9F9KSvm3Z249wGJPCa1nKPjZJZ2ur57eHAvLCt59G7tk1NtK3aveWauISd7Z3zcndNqObtd3Tv4ldKs9WPxvs9/ZmBcjBRVp3a3ZqMJd0LRfZJX62eVJUmtVwTzysrWfDb6n3FCqu/b2Z+5laiuGXf7Pdu3FGrxOHlCSnSlJNNOMk2pRe7Ne1ep5Hd8mOeXH4aKp4qEcbBZKblqVkuuaTUu9X6zm1UjHbZJ75OKv3vJ+/fmWZQw9R7PKPfqKS47ZPVXrd/WBK7598Hq5YTEa1tmtSUb/avf1Eecs+cHG6VaoteSoXTVCm3aTTylVltnbuS4XzNTPRdG30t1+n+lt2/jnssylGndQio9m3JXV75rOLduEkBYo0vJxvtbXthK3r9gdTN7bXXHZZW2lFavn87E/hMswl8N21AT/wAx2N19HTpbPIYmol9moo1L/inPwJEIY5gsW1WxlFvKVKlUiuuE5Rk/9yPgTOZUAAAAAAAABh6X0lSwtCeIrPVp01eVldu7SSS3ttpd5CfKXnAx2IqT8jUlh6NnqQptKbzy1pXTb4u9rXsrgTfi8fRo/wB9Vp0r7NecY37Ls0WM5faLpJt4mM7K/wCzjOorXte8E16yAq9Wb15tuTTjNyk3m5ZSj0lnuzSS/wBJYn0fSdoxk4Ny6PRknbJ3ndPO3Cy3u9RNmO51sDBPycKtXpKKdoQg21dXk5ZZdRyemedbGVIuNCEMKnGVn6dROO680lx2RftI8lKVm30W04ylJ6nTp9JPfJu3G12+rLx1PpJNp2nZLUjaXRqR1n0mtkcnukBs9K6TqYmd61SU5ynHVlOTlLVnG6UY5u2SyS+kss8sOhQiuk7pNR9JqKSzhLJZvVk+rKOzMxJxaTSlsTT8nFu+rLWjNyaz6T25ZIuxp1HshbO15O7tONmtue952AyvOY3Sd0rO9oqKyjapG+19FQyXHZtti1cc72Vkk3HJ6zje6jJN73rN9eqWqlXNuTb2qTexa10pdaySe31mHNNZPctiW617X6m/AuDLnrSz9JPK6bnk3utkmrdTz7S1KlUebjPbdtx1Yp3u3eSWTSXxMOrDbdRWeyybukkUu26OTvm9trr1+AguvLfFX29JSebu1dfqVQrpKzu+xbc777X+czGnJb37lt+CF7rZbx9gGX5xvUbL+Jtp+Fva2Xo41u6u3fbsgl3paz72ay/F37ypS+fcBmVVF3e1vb1vrvm+xspjjJLJZLq2fPz1mN5ZfPz+pROvHiBmPHv5+fnrLUsRfd89nDJbLbDGVRMvQ7Pn57AKVBv56rfAu037fbEqin49/j8svQwt977l272KO35mMXGnpROUlBSw9aLbaS2wktr/AISf6GJpz9CcZ226sk7eB8v6Iw7pzU4ScZJNKSd2k1Z9SyZLHM7GTqYybbktWgtZtuTl+0bu31W8TOqk0AAAAAAAHCc8Tn5jTjHZPEwUt2Sp1JK/+aK8CEMRrLan4XXij6Z5Q6IhjMPPDzdtazjLfCcXeM7b7NbN6ut5APKDRNXCV3RrRdKpm439CrFOynSnvTydtqvZgc7HFdfUXljXxz8XcvTqbpRT+1FP2lp0qb+iu669hR555ndpX4tZ57S556vV2K62MtPD0+Hrl8Q8PS+r/ql8QPZaSS+jezexWyazVzHlpRZJr+F2zvb0Wt3sMnzWl9Vfin8S9BUkrKlS76cZ+udwNRiMSpLWavfJ3aSu7rZftZRRrSdoU7zau/JqKlllsVm13bTdSxkllBqHDVhCFvwpFmtpKu1qurUcXtj5SWq+64o1s41knanqZZ2pW3/Wav7DCqQqPan2uSv7TYyVynUFGsVKXUu2/wAC/Tw8mtvq/UyZwKqc9WNu0UWPM+Ot4xXxK44SG+LfbL+Wwniur1lDxfV6yC6sLHdGK8Zf/R75suNuxJGP53LgvWUSxM+PqAzVhob7vvLsKUFuNX5ap9Z+o91pPa34gbdWXUVRqLiaqnEzKKA2dLFW2ImnmcoWwNSo/Sq1232KnBR9WfeQvo3CupKMd0pKO22s5NRUb7rtpd59LaE0bHDYenQjb9nGzaVlKTzlLvk2wM4AAAAAAAAs4vDU6sJU6sI1ITVpQkk4yT3NMuyRhYrRyntnNdjAjblHzUR1nPBYiNNfuazcoL7NRdJLqafaRnpfR9fCz8niKbg/rRcZ032Si2mTjpPkFCtf/qKkfWcxjOZ6UruGLS7aT9zAibyqeyS8bM8nKXAkPEcyWKfo4uj305mI+ZLSK9HE4f8A3V7gOBdaXBniryO8fMzpZbMRh3/nq/yFEuZ7TO6rhX97U/pgcR5U8cmztXzP6a/eYb82f9M8/sg019fD/nS/kA41J8D3VZ2D5o9N8cO/vpfylD5pdN/9j85/ADkXAolTfy0dbLmk03wo/nfoUf2Rab+rR/OQHF1KUuHrRQqUuDZ239j+muFH85fA9XM7prhQ/O/QDi1hZv6L8CrzGr+7n3Rk/cdsuZ3TP/jr75/ymRT5otNLZPDx+/n7oAcCsJU/dz/BP4FUcLU+pP8ABL4Eix5qNO/v6C/9iv8A0y9Hmk0y/SxdBfe15f8ABAR/Q0dWf+HJdbi4rxlZGwweATqQpJ+XrVJKMKNLpa0nuc9nh3tHZvmWx8vTxlH8NWXwOi5O822PwbvSx1Km9l44WOs09zk3rPxA2HN9yGeH/b42EHWjJOhBPWjQST6WWWvn12W+7ZIBpdH6NxcF+1xflfuor3m1hCS2yv3JAXQeI9AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD//2Q==",
+      "data:image/jpeg;base64,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"],
+      "availableColors": ["Black", "Blue", "Gray"],
+      "availableSizes": ["7", "8", "9", "10"],
+      "materials": ["Mesh", "Rubber"],
+      "features": ["Breathable", "Cushion Support"],
+      "reviews": [
+        { "reviewer": "Mark", "comment": "Perfect for long runs!", "rating": 5 },
+        { "reviewer": "Nancy", "comment": "Stylish and comfortable.", "rating": 4.3 }
+      ],
+      "brandName":"TATA",
+      "maxStock":3
+    },
+    {
+      "id": 8,
+      "title": "Leather Handbag",
+      "price": 3999,
+      "rating": 4.6,
+      "description": "Elegant leather handbag suitable for casual and formal occasions.",
+      "category": "Accessories",
+      "imageUrl": ["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDHXEfZ_8xzF_l5r8WE0NrS3hGggIofIe1ag&s",
+    "data:image/jpeg;base64,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",
+  "data:image/jpeg;base64,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"],
+      "availableColors": ["Brown", "Black"],
+      "availableSizes": ["Medium"],
+      "materials": ["Genuine Leather"],
+      "features": ["Durable", "Multiple Compartments"],
+      "reviews": [
+        { "reviewer": "Olivia", "comment": "Looks classy and is spacious.", "rating": 4.8 },
+        { "reviewer": "Paul", "comment": "Good quality leather.", "rating": 4.5 }
+      ],
+      "brandName":"TATA",
+      "maxStock":3
+    },
+    {
+      "id": 9,
+      "title": "Wooden Study Table",
+      "price": 7999,
+      "rating": 4.3,
+      "description": "A sturdy wooden study table with ample storage.",
+      "category": "Furniture",
+      "imageUrl": ["https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcT8gHc8YFz2xDSCk1kD1ECaDWWbddbuBSN99w1ZnWmc7sGO-BlBHmMYHCtxczOi1BiVnmDYlasK_iLD_RbxFf0AwGAol23CcpY9TefNLKQ&usqp=CAE",
+      "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcTLcHXxsnHKyyZ8IMPYN47AdLpg_GQoKcFW0Hk6ht6-YA1QW7dgDurz6sNfC-Ow0jR-b9MAtjN9VScCfY7aOkig7brQdpH8DcCNYOGQYa4&usqp=CAE"
+      ,"https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcS369AZXEhHKr3EPvjHs5UYQ6Cmef1lCsujwBnzfgUSydH5ltSezt6xNljPBeLvXUh6gFrZpMPKeowYIBpA2oq3wRmOgMoukGI6VdzmYMt91AWetKrcNAdu&usqp=CAE"],
+      "availableColors": ["Oak", "Walnut"],
+      "availableSizes": ["4ft x 2ft"],
+      "materials": ["Wood"],
+      "features": ["Scratch Resistant", "Spacious Drawers"],
+      "reviews": [
+        { "reviewer": "Quinn", "comment": "Perfect for my home office.", "rating": 4.5 },
+        { "reviewer": "Rachel", "comment": "Solid build quality.", "rating": 4.2 }
+      ],
+      "brandName":"TATA",
+      "maxStock":3
+    },
+    {
+      "id": 10,
+      "title": "Stainless Steel Water Bottle",
+      "price": 799,
+      "rating": 4.7,
+      "description": "Insulated stainless steel water bottle that keeps drinks hot or cold.",
+      "category": "Accessories",
+      "imageUrl": ["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3zW0eK7A5D3R7cG2tD2x1MTLz-F3mNnpfRg&s",
+    "data:image/jpeg;base64,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",
+    "data:image/jpeg;base64,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"],
+      "availableColors": ["Silver", "Blue", "Red"],
+      "availableSizes": ["500ml", "1L"],
+      "materials": ["Stainless Steel"],
+      "features": ["Insulated", "Leak-Proof"],
+      "reviews": [
+        { "reviewer": "Steve", "comment": "Keeps water cold all day!", "rating": 5 },
+        { "reviewer": "Tina", "comment": "Very durable and sleek.", "rating": 4.6 }
+      ],
+      "brandName":"TATA",
+      "maxStock":3
+    },
+    
+ {
+            "id": 11,
+            "title": "Air Purifier",
+            "price": 9999,
+            "rating": 4.6,
+            "description": "A high-performance air purifier for clean and fresh air in your home.",
+            "category": "Home Appliances",
+            "imageUrl": ["https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcSdWljVZX9Zixepctsrn5f55Hci7l7ClhEVN0I3UtP3QVXQWOIfH1_309fwgkSt5H_aZ8molYw9eMlkE6bym-CjFqhnTHNTxxQtGaFl6NmCSwCqfMZQ1jzcKSwR10PU&usqp=CAc"],
+            "availableColors": ["White", "Black"],
+            "availableSizes": ["Medium", "Large"],
+            "materials": ["Plastic", "Metal"],
+            "features": ["HEPA Filter", "Smart Sensor", "Quiet Operation"],
+            "reviews": [
+                {
+                    "reviewer": "Alice",
+                    "comment": "Works perfectly, and the air feels fresher.",
+                    "rating": 4.8
+                },
+                {
+                    "reviewer": "Bob",
+                    "comment": "Very quiet and efficient.",
+                    "rating": 4.6
+                }
+            ],
+            "brandName":"TATA",
+            "maxStock":3
+        },
+        {
+            "id": 12,
+            "title": "Washing Machine",
+            "price": 15999,
+            "rating": 4.3,
+            "description": "A reliable washing machine for your daily laundry needs.",
+            "category": "Home Appliances",
+            "imageUrl": ["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUpbjl11a6sAar3P0u-tyTRe0hHpDbP-jHgQ&s"],
+            "availableColors": ["White", "Silver"],
+            "availableSizes": ["6kg", "8kg", "10kg"],
+            "materials": ["Steel", "Plastic"],
+            "features": ["Quick Wash", "Energy Efficient", "Multiple Modes"],
+            "reviews": [
+                {
+                    "reviewer": "Chloe",
+                    "comment": "Cleans clothes well and saves energy.",
+                    "rating": 4.5
+                },
+                {
+                    "reviewer": "David",
+                    "comment": "A bit noisy but does a great job.",
+                    "rating": 4
+                }
+            ],
+            "brandName":"TATA",
+            "maxStock":3
+        },
+        {
+            "id": 13,
+            "title": "Refrigerator",
+            "price": 24999,
+            "rating": 4.7,
+            "description": "A spacious refrigerator with advanced cooling technology.",
+            "category": "Home Appliances",
+            "imageUrl": ["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQShV6aOSkdMY6_kTmGSWlmIGFqni1p2rPbI4c&s"],
+            "availableColors": ["Silver", "Black"],
+            "availableSizes": ["300L", "400L", "500L"],
+            "materials": ["Stainless Steel", "Glass"],
+            "features": ["Energy Efficient", "Frost Free", "Smart Temperature Control"],
+            "reviews": [
+                {
+                    "reviewer": "Eve",
+                    "comment": "Keeps food fresh for longer.",
+                    "rating": 4.8
+                },
+                {
+                    "reviewer": "Frank",
+                    "comment": "Large capacity and stylish design.",
+                    "rating": 4.7
+                }
+            ],
+            "brandName":"TATA",
+            "maxStock":3
+        },
+        {
+            "id": 14,
+            "title": "Blender",
+            "price": 2499,
+            "rating": 4.5,
+            "description": "A high-speed blender for smoothies, soups, and more.",
+            "category": "Home Appliances",
+            "imageUrl": ["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8qGVzpshP_lRZGvH1EXNj52nmfz3Jl-c1a4s"],
+            "availableColors": ["Red", "Black"],
+            "availableSizes": ["1L", "1.5L"],
+            "materials": ["Plastic", "Stainless Steel"],
+            "features": ["Multiple Speeds", "Pulse Function", "Dishwasher Safe"],
+            "reviews": [
+                {
+                    "reviewer": "Grace",
+                    "comment": "Perfect for making smoothies and soups!",
+                    "rating": 4.6
+                },
+                {
+                    "reviewer": "Henry",
+                    "comment": "Very powerful and easy to clean.",
+                    "rating": 4.5
+                }
+            ],
+            "brandName":"TATA",
+            "maxStock":3
+        }
+    
+    
+  ] }
+  
