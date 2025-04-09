@@ -8,29 +8,55 @@ import SignupPage from './pages/SingupPage'
 import ProductView from './pages/ProductView'
 import HomePage from './pages/HomePage'
 import ProductsPage from './pages/Product'
-import {BrowserRouter as Router ,Routes,Route} from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import ProtectedRoute from './utils/ProtectedRoutes'
 
 function App() {
   const [cartItem, setCartItems] = useState([]);
-  const [buy,setBuy] = useState([]);
+  const [buy, setBuy] = useState([]);
   console.log(buy);
-  
+
   return (
     <Router>
-    <Header/>
+      <Header />
       <Routes>
-       
-        <Route path="/" element={<HomePage/>}/>
-        <Route path="/login" element={<LoginPage/>}/>
-        <Route path="/products/:category" element={<ProductsPage/>}/>
-        <Route path="/signup" element={<SignupPage/>}/>
-        <Route path="/products/:category/:id" element={<ProductView setBuy={setBuy} setCartItems={setCartItems}/>} />
-        <Route path="/cart" element={<CartPage cartItem={cartItem} setBuy={setBuy}  />}/>
-        <Route path="/order" element={<OrderHistoryPage buy={buy} />}/>
+        {/* Public Routes */}
+        <Route path="/" element={<LoginPage />} />
+        <Route path="/signup" element={<SignupPage />} />
 
+        {/* Protected Routes */}
+        <Route path="/homePage" element={
+          <ProtectedRoute>
+            <HomePage />
+          </ProtectedRoute>
+        } />
+        
+        <Route path="/products/:category" element={
+          <ProtectedRoute>
+            <ProductsPage />
+          </ProtectedRoute>
+        } />
+
+        <Route path="/products/:category/:id" element={
+          <ProtectedRoute>
+            <ProductView setBuy={setBuy} setCartItems={setCartItems} />
+          </ProtectedRoute>
+        } />
+
+        <Route path="/cart" element={
+          <ProtectedRoute>
+            <CartPage cartItem={cartItem} setBuy={setBuy} />
+          </ProtectedRoute>
+        } />
+
+        <Route path="/order" element={
+          <ProtectedRoute>
+            <OrderHistoryPage buy={buy} />
+          </ProtectedRoute>
+        } />
       </Routes>
     </Router>
   )
 }
 
-export default App
+export default App;

@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
 import {
     Box,
     Grid,
@@ -6,31 +7,96 @@ import {
     Button,
     Typography,
     Paper,
+    
 } from '@mui/material';
-
+import { validateEmail, validateName, validatePassword } from '../utils/FormValidation';
+import {Link} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../utils/AuthContext'; 
 const SignupPage = () => {
-    const handleSignup = (e) => {
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        password: '',
+        confirmPassword: '',
+    });
+    const { token, login } = useAuth();
+    const [error, setError] = useState({
+        nameError: '',
+        emailError: '',
+        passwordError: '',
+        confirmPasswordError: '',
+    });
+
+    const navigate = useNavigate();
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
+        setError({ ...error, [`${name}Error`]: '' }); 
+    };
+
+    const validateForm = () => {
+        const formError = {
+            nameError: validateName(formData.name),
+            emailError: validateEmail(formData.email),
+            passwordError: validatePassword(formData.password),
+            confirmPasswordError: 
+                formData.password !== formData.confirmPassword ? "Passwords do not match" : "",
+        };
+
+        setError(formError);
+
+        return Object.values(formError).every((err) => err === '');
+    };
+
+    const handleSignup = async (e) => {
         e.preventDefault();
-        console.log('Signup form submitted');
+      
+        
+        if (validateForm()) return; 
+        try {
+            const response = await axios.post(
+                `${import.meta.env.VITE_API_URL}user/register`,
+                formData,
+                {
+                  headers: { 'Content-Type': 'application/json' },
+                }
+              );
+            
+            if(response.status === 400){
+                console.log(response.data.message);
+                
+            }
+            if(response.status === 409){
+                console.log(response.data.message);
+                
+            }
+            if (response.status === 201) {
+                console.log('Signup successful:', response.data.message);
+                login(response.data.token);
+                navigate("/homePage");
+               
+            }
+        } catch (error) {
+            console.error('Signup failed:', error);
+           
+        }
     };
 
     return (
-        <Box sx={{ height: '60vh', backgroundColor: '#f5f5f5', width:"50%", margin:"auto",marginTop:"10%" }}>
+        <Box sx={{ height: '60vh', backgroundColor: '#f5f5f5', width: '50%', margin: 'auto', marginTop: '5%' }}>
             <Grid container sx={{ height: '100%' }}>
-                {/* Shopping Image Section */}
                 <Grid item xs={12} md={6}>
                     <Box
                         sx={{
                             height: '100%',
-                            backgroundImage:
-                                'url(https://focustelecom.pl/wp-content/uploads/2021/12/Bez-tytulu-500%C3%97333-px.png)',
+                            backgroundImage: 'url(https://focustelecom.pl/wp-content/uploads/2021/12/Bez-tytulu-500%C3%97333-px.png)',
                             backgroundSize: 'cover',
                             backgroundPosition: 'center',
                         }}
-                    ></Box>
+                    />
                 </Grid>
 
-                {/* Signup Form Section */}
                 <Grid
                     item
                     xs={12}
@@ -45,13 +111,7 @@ const SignupPage = () => {
                         padding: 4,
                     }}
                 >
-                    <Box
-                        sx={{
-                            width: '100%',
-                            maxWidth: '400px',
-                            textAlign: 'center',
-                        }}
-                    >
+                    <Box sx={{ width: '100%', maxWidth: '400px', textAlign: 'center' }}>
                         <Typography variant="h4" gutterBottom>
                             Sign Up
                         </Typography>
@@ -59,32 +119,53 @@ const SignupPage = () => {
                             <TextField
                                 fullWidth
                                 label="Name"
+                                name="name"
                                 variant="outlined"
                                 margin="normal"
-                                required
+                                value={formData.name}
+                                onChange={handleInputChange}
+                                error={!!error.nameError}
+                                helperText={error.nameError}
+                                
+                                
                             />
                             <TextField
                                 fullWidth
                                 label="Email"
+                                name="email"
                                 variant="outlined"
                                 margin="normal"
-                                required
+                                onChange={handleInputChange}
+                                error={!!error.emailError}
+                                helperText={error.emailError}
+                               
+                                
                             />
                             <TextField
                                 fullWidth
                                 label="Password"
+                                name="password"
                                 type="password"
                                 variant="outlined"
                                 margin="normal"
-                                required
+                                onChange={handleInputChange}
+                                error={!!error.passwordError}
+                                helperText={error.passwordError}
+                            
+                              
                             />
                             <TextField
                                 fullWidth
                                 label="Confirm Password"
+                                name="confirmPassword"
                                 type="password"
                                 variant="outlined"
                                 margin="normal"
-                                required
+                                value={formData.confirmPassword}
+                                onChange={handleInputChange}
+                                error={!!error.confirmPasswordError}
+                                helperText={error.confirmPasswordError}
+                               
                             />
                             <Button
                                 type="submit"
@@ -101,9 +182,9 @@ const SignupPage = () => {
                         </form>
                         <Typography>
                             Already have an account?{' '}
-                            <a href="#" style={{ textDecoration: 'none' }}>
+                            <Link to="/login" style={{ textDecoration: 'none' }}>
                                 Login
-                            </a>
+                            </Link>
                         </Typography>
                     </Box>
                 </Grid>

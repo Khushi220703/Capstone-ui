@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     Table,
     TableBody,
@@ -13,50 +13,62 @@ import {
     Button,
     Typography,
 } from '@mui/material';
-import { Add, Remove, Delete } from '@mui/icons-material';
+import { Add, Remove, Delete, Tune } from '@mui/icons-material';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
-
-const CartPage = ({cartItem,setBuy}) => {
-    const [cartItems, setCartItems] = useState(cartItem)
-
+import axios from 'axios';
+import  decodeToken  from '../utils/DecryptToken';
+import { useAuth } from '../utils/AuthContext'; 
+const CartPage = ({cartItem, setBuy}) => {
+    const [cartItems, setCartItems] = useState([]);
     const [openCarousel, setOpenCarousel] = useState(false);
     const [selectedImages, setSelectedImages] = useState([]);
     const [snackbarMessage, setSnackbarMessage] = useState('');
     const [openSnackbar, setOpenSnackbar] = useState(false);
+    const { token } = useAuth();
+    const userId = decodeToken(token).id
+    
+    const getCart = async () => {
+        //    const userId="poppihkjg68669"
+            try {
+                const response = await fetch(`${import.meta.env.VITE_API_URL}cart/getCartItem/${userId}`);
+               
+
+                if(response.status === 404){
+                    setCartItems([]);
+                    return;
+                }
+                const data = await response.json();
+                console.log(data.data);
+                setCartItems(data.data);
+            } catch (error) {
+                console.log("There is an error from server side.", error);
+            }
+         }
 
     // Handle quantity increment/decrement
-    const handleQuantityChange = (id, action) => {
-        setCartItems((prev) =>
-            prev.map((item) => {
-                if (item.id === id) {
-                    const newQuantity =
-                        action === 'increment'
-                            ? Math.min(item.quantity + 1, item.maxStock)
-                            : Math.max(1, item.quantity - 1);
-
-                    if (newQuantity !== item.quantity) {
-                        setSnackbarMessage(
-                            action === 'increment'
-                                ? `Increased quantity of ${item.name}`
-                                : `Decreased quantity of ${item.name}`
-                        );
-                        setOpenSnackbar(true);
-                    }
-
-                    return { ...item, quantity: newQuantity };
-                }
-                return item;
-            })
-        );
+    const handleQuantityChange = async (id, isIncre) => {
+        console.log(id,isIncre);
+        
+        try {
+            const response = await axios.put(`${import.meta.env.VITE_API_URL}cart/updateQuantity/${id}/${isIncre}`);
+            
+            if(response.status === 200) getCart();
+        } catch (error) {
+            console.log("There is an error from the server side:", error);
+            
+        }
     };
 
     // Handle removing an item
-    const handleRemoveItem = (id) => {
-        const itemName = cartItems.find((item) => item.id === id)?.name || '';
-        setCartItems((prev) => prev.filter((item) => item.id !== id));
-        setSnackbarMessage(`Removed ${itemName} from the cart`);
-        setOpenSnackbar(true);
+    const handleRemoveItem = async (id) => {
+        try {
+            const response = await axios.delete(`${import.meta.env.VITE_API_URL}cart/deleteCartItem/${id}`);
+           
+            if(response.status === 200) getCart();
+        } catch (error) {
+            console.log("There is an error from server side:", error);
+        }
     };
 
     // Handle image click to open carousel
@@ -67,148 +79,180 @@ const CartPage = ({cartItem,setBuy}) => {
 
     // Calculate total price
     const calculateTotal = () => {
-        return cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+        return cartItems.reduce((total, item) => total + item.productId.price * item.quantity, 0);
     };
 
-    const handleBuyProduct = () => {
-       
-        cartItems.forEach((product) => {
-            setBuy((prevOrders) => [
-                ...prevOrders,
+    const handleBuyProduct = async () => {
+        try {
+            const userId = cartItems[0]?.userId;
+    
+            const items = cartItems.map(({ userId, ...rest }) => rest); // remove userId from each item
+    
+            const totalAmount = cartItems.reduce((total, item) => total + item.productId.price * item.quantity, 0);
+    
+            const order = {
+                userId,
+                items, // each item has full product details
+                totalAmount,
+                status: "Pending",
+                orderDate: new Date().toISOString(),
+                shippingAddress: "123, Sample Street, City, Country", // replace with user input
+                paymentMethod: "Cash on Delivery", // or other method
+                transactionId: "TXN-" + Date.now(),
+            };
+    
+            const response = await axios.post(
+                `${import.meta.env.VITE_API_URL}orders/addOrder`,
+                [order],
                 {
-                    id: `ORD${Date.now()}`,
-                    productName: product.productName,
-                    price: product.price,
-                    quantity: product.quantity,
-                    orderDate: new Date().toISOString().split('T')[0], 
-                    status: 'Shipped',
-                    images: product.images,
-                    shippingDetails: `Delivered to 1234 Street, City Name, Country.`,
-                },
-            ]);
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${localStorage.getItem("token")}`,
+                    }
+                }
+            );
     
-            console.log(`Order placed for ${product.productName}. Status: Shipped.`);
-        });
+            console.log("Order placed successfully:", response.data);
+            // Optional: clear cart, redirect, etc.
+            setCartItems([]);
     
-       
-        setCartItems([]);
+        } catch (error) {
+            console.error("Error placing order:", error?.response?.data || error.message);
+        }
     };
     
-      
+    
+
+    useEffect(() => {
+        
+
+         getCart();
+    }, []);
+
+   
+    
 
     return (
         <Box sx={{ padding: 2 }}>
             <Typography variant="h4" gutterBottom>
                 Cart
             </Typography>
-            <TableContainer>
-                <Table>
-                    <TableHead>
-                        <TableRow>
-                            <TableCell>Image</TableCell>
-                            <TableCell>Product</TableCell>
-                            <TableCell>Brand</TableCell>
-                            <TableCell>Price</TableCell>
-                            <TableCell>Quantity</TableCell>
-                            <TableCell>Total</TableCell>
-                            <TableCell>Actions</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {cartItems.map((item) => (
-                            <TableRow key={item.id}>
-                                <TableCell>
-                                    <img
-                                        src={item.images[0]}
-                                        alt={item.name}
-                                        style={{ width: 50, height: 50, cursor: 'pointer' }}
-                                        onClick={() => handleImageClick(item.images)}
-                                    />
-                                </TableCell>
 
-                                <TableCell>{item.name}</TableCell>
-                                <TableCell>{item.brandName}</TableCell>
-                                <TableCell>₹{item.price}</TableCell>
-                                <TableCell>
-                                    <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                                        <IconButton
-                                            onClick={() => handleQuantityChange(item.id, 'decrement')}
-                                            disabled={item.quantity === 1}
-                                        >
-                                            <Remove />
-                                        </IconButton>
-                                        <span>{item.quantity}</span>
-                                        <IconButton
-                                            onClick={() => handleQuantityChange(item.id, 'increment')}
-                                            disabled={item.quantity >= item.maxStock}
-                                        >
-                                            <Add />
-                                        </IconButton>
-                                    </Box>
-                                    {item.quantity >= item.maxStock && (
-                                        <Typography variant="caption" color="error">
-                                            Max stock reached
-                                        </Typography>
-                                    )}
-                                </TableCell>
-                                <TableCell>₹{item.price * item.quantity}</TableCell>
-                                <TableCell>
-                                    <IconButton onClick={() => handleRemoveItem(item.id)} color="error">
-                                        <Delete />
-                                    </IconButton>
-                                </TableCell>
+            {/* Check if there are no items in the cart */}
+            {cartItems.length === 0 ? (
+                <Typography variant="h6" color="textSecondary">
+                    Your cart is empty. Add some items to the cart!
+                </Typography>
+            ) : (
+                <TableContainer>
+                    <Table>
+                        <TableHead>
+                            <TableRow>
+                                <TableCell>Image</TableCell>
+                                <TableCell>Product</TableCell>
+                                <TableCell>Brand</TableCell>
+                                <TableCell>Price</TableCell>
+                                <TableCell>Quantity</TableCell>
+                                <TableCell>Total</TableCell>
+                                <TableCell>Actions</TableCell>
                             </TableRow>
-                        ))}
-                    </TableBody>
-                </Table>
-            </TableContainer>
+                        </TableHead>
+                        <TableBody>
+                            {cartItems.map((item) => (
+                                <TableRow key={item.id}>
+                                    <TableCell>
+                                        <img
+                                            src={item.productId.imageUrl}
+                                            alt={item.productId.title}
+                                            style={{ width: 50, height: 50, cursor: 'pointer' }}
+                                            onClick={() => handleImageClick(item.images)}
+                                        />
+                                    </TableCell>
 
-            <Box sx={{ marginTop: 2, textAlign: 'right' }}>
-                <Typography variant="h6">Grand Total: ₹{calculateTotal()}</Typography>
-                <Button variant="contained" color="primary" sx={{ marginTop: 2 }} onClick={handleBuyProduct}>
-                    Proceed to Checkout
-                </Button>
-            </Box>
+                                    <TableCell>{item.productId.title}</TableCell>
+                                    <TableCell>{item.productId.brandName}</TableCell>
+                                    <TableCell>₹{item.productId.price}</TableCell>
+                                    <TableCell>
+                                        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                                            <IconButton
+                                                onClick={() => handleQuantityChange(item._id, 0)}
+                                                disabled={item.quantity === 1}
+                                            >
+                                                <Remove />
+                                            </IconButton>
+                                            <span>{item.quantity}</span>
+                                            <IconButton
+                                                onClick={() => handleQuantityChange(item._id, 1)}
+                                                disabled={item.quantity >= item.maxStock}
+                                            >
+                                                <Add />
+                                            </IconButton>
+                                        </Box>
+                                        {item.quantity >= item.maxStock && (
+                                            <Typography variant="caption" color="error">
+                                                Max stock reached
+                                            </Typography>
+                                        )}
+                                    </TableCell>
+                                    <TableCell>₹{item.productId.price * item.quantity}</TableCell>
+                                    <TableCell>
+                                        <IconButton onClick={() => handleRemoveItem(item._id)} color="error">
+                                            <Delete />
+                                        </IconButton>
+                                    </TableCell>
+                                </TableRow>
+                            ))}
+                        </TableBody>
+                    </Table>
+                </TableContainer>
+            )}
+
+            {/* Grand Total and Checkout */}
+            {cartItems.length  && (
+                <Box sx={{ marginTop: 2, textAlign: 'right' }}>
+                    <Typography variant="h6">Grand Total: ₹{calculateTotal()}</Typography>
+                    <Button variant="contained" color="primary" sx={{ marginTop: 2 }} onClick={handleBuyProduct}>
+                        Proceed to Checkout
+                    </Button>
+                </Box>
+            )}
 
             {/* Carousel Modal */}
             <Modal open={openCarousel} onClose={() => setOpenCarousel(false)}>
-    <Box
-        sx={{
-            width: '100%',
-            maxWidth: '600px',
-            margin: 'auto',
-            marginTop: '5%',
-            backgroundColor: 'white',
-            borderRadius: '8px',
-           
-            height:"500px"
-        }}
-    >
-        <Carousel
-            showThumbs={true}
-            infiniteLoop={true}
-            useKeyboardArrows={true}
-            dynamicHeight={true}
-            showArrows={true}
-            emulateTouch={true}
-        >
-            {selectedImages.map((image, index) => (
-                <img
-                    key={index}
-                    src={image}
-                    alt={`Slide ${index}`}
-                    style={{
+                <Box
+                    sx={{
                         width: '100%',
-                        maxHeight: '500px',
-                       
+                        maxWidth: '600px',
+                        margin: 'auto',
+                        marginTop: '5%',
+                        backgroundColor: 'white',
                         borderRadius: '8px',
+                        height:"500px"
                     }}
-                />
-            ))}
-        </Carousel>
-    </Box>
-</Modal>
-
+                >
+                    <Carousel
+                        showThumbs={true}
+                        infiniteLoop={true}
+                        useKeyboardArrows={true}
+                        dynamicHeight={true}
+                        showArrows={true}
+                        emulateTouch={true}
+                    >
+                        {selectedImages.map((image, index) => (
+                            <img
+                                key={index}
+                                src={image}
+                                alt={`Slide ${index}`}
+                                style={{
+                                    width: '100%',
+                                    maxHeight: '500px',
+                                    borderRadius: '8px',
+                                }}
+                            />
+                        ))}
+                    </Carousel>
+                </Box>
+            </Modal>
 
             {/* Snackbar */}
             <Snackbar

@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Typography, Button, Select, MenuItem, FormControl, InputLabel, TextField, Rating, Chip, Pagination } from '@mui/material';
-import { useParams } from 'react-router-dom';
+import { data, useParams } from 'react-router-dom';
 import { Carousel } from 'react-responsive-carousel'; // Import Carousel component
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // Import CSS for carousel
-
+import axios from 'axios';
+import decodeToken from '../utils/DecryptToken';
+import { useAuth } from '../utils/AuthContext';
 const ProductView = ({setCartItems,setBuy}) => {
   const [quantity, setQuantity] = useState(1);
   const [selectedColor, setSelectedColor] = useState('Black');
@@ -12,12 +14,13 @@ const ProductView = ({setCartItems,setBuy}) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [product, setProduct] = useState({});
   const { id } = useParams();  
+  const {token} = useAuth();
+  const userId = decodeToken(token).id;
 
-  const handleAddToCart = () => {
+const handleAddToCart = async () => {
     console.log(`Added ${quantity} of ${product.name} (${product.brandName}) to the cart.`);
     
     setCartItems((prev) => {
-       
         const existingItemIndex = prev.findIndex(item => item.id === product.id);
 
         if (existingItemIndex !== -1) {
@@ -40,14 +43,31 @@ const ProductView = ({setCartItems,setBuy}) => {
                     name: product.title,
                     brandName: product.brandName,
                     price: product.price,
-                    quantity: quantity <= product.maxStock ? quantity : product.maxStock,
+                    quantity: Math.min(quantity, product.maxStock), 
                     maxStock: product.maxStock,
                     images: product.imageUrl,
                 }
             ];
         }
     });
+
+    try {
+        
+        const response = await axios.post(`${import.meta.env.VITE_API_URL}cart/addToCart`, {
+          productId: product._id,  
+            userId,
+            quantity: quantity,
+        });
+
+       
+        console.log('Product added to cart:', response.data);
+
+    } catch (error) {
+        console.log("Failed to add item to cart:", error);
+      
+    }
 };
+
 
 
 
@@ -57,20 +77,21 @@ const ProductView = ({setCartItems,setBuy}) => {
 
   const getProduct = async () => {
     try {
-      const response = await fetch("/Products.json"); 
-      console.log("Response Status:", response.products);
+      const response = await fetch(`${import.meta.env.VITE_API_URL}product/getProductById/${id}`); 
+     
   
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       const data = await response.json();
-      console.log("Fetched data:", data);
+      // console.log("Fetched data:", data);
   
-      const productData = data.products.find((item) => item.id === parseInt(id));
-      console.log(productData);
+      // const productData = data.products.find((item) => item.id === parseInt(id));
+      // console.log(productData);
       
-      if (productData) {
-        setProduct(productData);
+      
+      if (data) {
+        setProduct(data[0]);
       } else {
         console.error("Product not found");
         setProduct({}); 

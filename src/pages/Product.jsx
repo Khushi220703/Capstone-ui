@@ -4,8 +4,6 @@ import { useParams } from 'react-router-dom';
 import {Link} from "react-router-dom";
 
 
-
-
 const ProductsPage = () => {
     const { category } = useParams();
     const [products,setProducts] = useState([]);
@@ -13,15 +11,19 @@ const ProductsPage = () => {
 
     const filteredProducts = products.filter((product) => product.category === capitalizedCategory);
    
-
+   
     const getProducts = async () => {
         try {
-            const response = await fetch("/Products.json"); 
+            const response = await fetch(`${import.meta.env.VITE_API_URL}product/getProducts`); 
+           
+            
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             const data = await response.json();
-            setProducts(data.products); 
+            console.log(data);
+            
+            setProducts(data); 
         } catch (error) {
             console.error("There was an error fetching the products:", error);
         }
@@ -63,7 +65,7 @@ const ProductsPage = () => {
                                 <Typography variant="body2" sx={{ color: '#777' }}>
                                     Rating: {product.rating} ⭐
                                 </Typography>
-                               <Link to={`/products/${product.category}/${product.id}`} >
+                               <Link to={`/products/${product.category}/${product._id}`} >
                                <Button
                                     variant="contained"
                                     fullWidth
